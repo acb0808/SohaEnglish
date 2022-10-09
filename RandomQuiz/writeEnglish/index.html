@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SohaEnglish - writeEnglish</title>
+    <!-- <script src="/RandomQuiz/writeEnglish/script/raw.js"></script> -->
+    <script src="./script/raw.js"></script>
+    <style>
+        li {
+            margin: 25px 0;
+        }
+        .line {
+            border-bottom: 1px solid;
+        }
+    </style>
+</head>
+<body style="font-size: 12px;">
+    <button onclick="printQuiz()" class="printbutton">출력하기</button>
+    <ol>
+    </ol>
+    <script>
+
+        function printQuiz() {
+            document.querySelector('.printbutton').style = 'display:none;'
+            print()
+            document.querySelector('.printbutton').style = 'display:block;'
+        }
+
+        function getRandomSubarray(arr, size) {
+            var shuffled = arr.slice(0), i = arr.length, temp, index;
+            while (i--) {
+                index = Math.floor((i + 1) * Math.random());
+                temp = shuffled[index];
+                shuffled[index] = shuffled[i];
+                shuffled[i] = temp;
+            }
+            return shuffled.slice(0, size);
+        }
+
+        let arr = []
+        arr = raw.split('\n\n')
+        arr = arr.map(function(data) { return data.split('\n') })
+        arr = arr.map(function(data) { return {"kor":data[0], "eng":data[1]} })
+        
+        var quizArr = getRandomSubarray(arr, 23)
+        for (quiz of quizArr) {
+            document.querySelector('ol').innerHTML += `<li>${quiz.kor} (${quiz.eng.split(' ').length})</li><div class="line"></div>`
+        }
+
+        console.log(arr)
+    </script>
+</body>
+</html>
