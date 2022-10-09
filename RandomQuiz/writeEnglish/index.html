@@ -17,15 +17,30 @@
     </style>
 </head>
 <body style="font-size: 12px;">
-    <button onclick="printQuiz()" class="printbutton">출력하기</button>
-    <ol>
+    <div class="printbutton">
+        <button onclick="printQuiz()">문제출력</button>
+        <button onclick="printAnswer()">답지출력</button>
+    </div>
+    <ol class="quiz">
     </ol>
+    <ol class="answer"></ol>
+
     <script>
 
         function printQuiz() {
             document.querySelector('.printbutton').style = 'display:none;'
+            document.querySelector('.answer').style = 'display:none;'
             print()
             document.querySelector('.printbutton').style = 'display:block;'
+            document.querySelector('.answer').style = 'display:block;'
+        }
+
+        function printAnswer() {
+            document.querySelector('.printbutton').style = 'display:none;'
+            document.querySelector('.quiz').style = 'display:none;'
+            print()
+            document.querySelector('.printbutton').style = 'display:block;'
+            document.querySelector('.quiz').style = 'display:block;'
         }
 
         function getRandomSubarray(arr, size) {
@@ -46,7 +61,8 @@
         
         var quizArr = getRandomSubarray(arr, 23)
         for (quiz of quizArr) {
-            document.querySelector('ol').innerHTML += `<li>${quiz.kor} (${quiz.eng.split(' ').length})</li><div class="line"></div>`
+            document.querySelector('.quiz').innerHTML += `<li>${quiz.kor} (${quiz.eng.split(' ').length})</li><div class="line"></div>`
+            document.querySelector('.quiz').innerHTML += `<li>${quiz.eng}</li>`
         }
 
         console.log(arr)
