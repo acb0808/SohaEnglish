@@ -62,7 +62,7 @@
         var quizArr = getRandomSubarray(arr, 23)
         for (quiz of quizArr) {
             document.querySelector('.quiz').innerHTML += `<li>${quiz.kor} (${quiz.eng.split(' ').length})</li><div class="line"></div>`
-            document.querySelector('.quiz').innerHTML += `<li>${quiz.eng}</li>`
+            document.querySelector('.answer').innerHTML += `<li>${quiz.eng}</li>`
         }
 
         console.log(arr)
